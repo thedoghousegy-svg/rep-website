@@ -3,44 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>REP. — Fitness Accountability App</title>
-  <meta name="description" content="REP. is the fitness app that keeps you accountable. Track workouts, hit PRs, build your squad. Available on iOS and Android.">
+  <title>REP. — Nobody Gets Strong Alone</title>
+  <meta name="description" content="The fitness app built around accountability. Track workouts, hit PRs, build your squad.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@700&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --black: #07060A;
-      --surface1: #0F0E13;
       --surface2: #161420;
       --surface3: #201E2A;
       --violet: #7B2FFF;
-      --violet-soft: rgba(123,47,255,0.13);
       --yellow: #D4FF1E;
-      --yellow-soft: rgba(212,255,30,0.09);
       --white: #EEECF4;
       --muted: #6B6780;
       --success: #00D97E;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       background: var(--black);
       color: var(--white);
       font-family: 'Instrument Sans', sans-serif;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
+    ::selection {
+      background: var(--violet);
+      color: var(--white);
     }
 
-    /* Nav */
+    /* ── Nav ── */
     nav {
-      padding: 24px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(7,6,10,0.7);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -48,366 +60,422 @@
 
     .logo {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 32px;
+      font-size: 28px;
       color: var(--white);
       text-decoration: none;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
     }
 
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 14px;
-      margin-left: 32px;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--white); }
-
-    /* Hero */
-    .hero {
-      padding: 120px 0 80px;
-      text-align: center;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: var(--violet-soft);
-      color: var(--violet);
-      font-size: 12px;
-      font-weight: 600;
+    .nav-cta {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      padding: 6px 16px;
+      color: var(--black);
+      background: var(--yellow);
+      padding: 10px 24px;
       border-radius: 100px;
-      margin-bottom: 32px;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+
+    .nav-cta:hover { transform: scale(1.05); }
+
+    /* ── Sections ── */
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 80px;
+    }
+
+    .hero-kicker {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--violet);
+      margin-bottom: 24px;
     }
 
     .hero h1 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(56px, 10vw, 96px);
-      line-height: 0.95;
-      margin-bottom: 24px;
+      font-size: clamp(72px, 12vw, 140px);
+      line-height: 0.9;
+      margin-bottom: 40px;
+      max-width: 900px;
     }
 
-    .hero h1 span { color: var(--yellow); }
+    .hero h1 .yellow { color: var(--yellow); }
+    .hero h1 .violet { color: var(--violet); }
 
-    .hero p {
+    .hero-sub {
       font-size: 18px;
       color: var(--muted);
-      max-width: 520px;
-      margin: 0 auto 48px;
-      line-height: 1.6;
+      max-width: 420px;
+      line-height: 1.7;
+      margin-bottom: 48px;
     }
 
-    .cta-row {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
+    .hero-cta {
       display: inline-flex;
       align-items: center;
-      padding: 14px 32px;
-      border-radius: 12px;
+      gap: 12px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
       font-size: 15px;
-      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--yellow);
+      padding: 16px 40px;
+      border-radius: 100px;
       text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .btn:hover { transform: translateY(-2px); }
-
-    .btn-primary {
-      background: var(--violet);
-      color: var(--white);
-      box-shadow: 0 4px 20px rgba(123,47,255,0.3);
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 40px rgba(212,255,30,0.2);
     }
 
-    .btn-primary:hover { box-shadow: 0 8px 30px rgba(123,47,255,0.4); }
-
-    .btn-secondary {
-      background: var(--surface2);
-      color: var(--white);
-      border: 1px solid var(--surface3);
-    }
-
-    /* Features */
-    .features {
-      padding: 80px 0;
-    }
-
-    .features-label {
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
       font-size: 12px;
-      font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--muted);
-      text-align: center;
-      margin-bottom: 48px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      animation: pulse 2s ease-in-out infinite;
     }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 16px;
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
     }
 
-    .feature-card {
-      background: var(--surface2);
-      border-radius: 20px;
-      padding: 32px;
-      border: 1px solid var(--surface3);
-      transition: border-color 0.3s;
-    }
-
-    .feature-card:hover { border-color: var(--violet); }
-
-    .feature-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      margin-bottom: 16px;
-    }
-
-    .feature-card h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 24px;
-      margin-bottom: 8px;
-    }
-
-    .feature-card p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    /* Stats */
-    .stats {
-      padding: 80px 0;
-      text-align: center;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      max-width: 600px;
+    /* ── Statement sections ── */
+    .statement {
+      padding: 160px 32px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    .stat-number {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 48px;
-      color: var(--yellow);
-    }
-
-    .stat-label {
-      font-size: 13px;
-      color: var(--muted);
-      letter-spacing: 1px;
+    .statement-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 3px;
       text-transform: uppercase;
-    }
-
-    /* Social proof */
-    .social {
-      padding: 80px 0;
-      text-align: center;
-    }
-
-    .social h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 48px;
-      margin-bottom: 16px;
-    }
-
-    .social h2 span { color: var(--violet); }
-
-    .social p {
       color: var(--muted);
-      font-size: 16px;
+      margin-bottom: 32px;
+    }
+
+    .statement h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 8vw, 80px);
+      line-height: 0.95;
+      max-width: 800px;
+    }
+
+    .statement h2 .yellow { color: var(--yellow); }
+    .statement h2 .violet { color: var(--violet); }
+    .statement h2 .green { color: var(--success); }
+
+    .statement p {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
       max-width: 480px;
-      margin: 0 auto 48px;
-      line-height: 1.6;
+      margin-top: 24px;
     }
 
-    /* CTA */
-    .final-cta {
-      padding: 80px 0 120px;
+    /* ── Divider ── */
+    .divider {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .divider-line {
+      height: 1px;
+      background: var(--surface3);
+    }
+
+    /* ── Numbers ── */
+    .numbers {
+      padding: 120px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .number-item {
       text-align: center;
     }
 
-    .final-cta h2 {
+    .number-value {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 56px;
-      margin-bottom: 16px;
+      font-size: 64px;
+      color: var(--yellow);
+      line-height: 1;
     }
 
-    .final-cta h2 span { color: var(--yellow); }
-
-    .final-cta p {
+    .number-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       color: var(--muted);
-      font-size: 16px;
-      margin-bottom: 40px;
+      margin-top: 8px;
     }
 
-    /* Footer */
+    /* ── Features strip ── */
+    .features-strip {
+      padding: 0 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-row {
+      display: flex;
+      align-items: center;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--surface3);
+      gap: 32px;
+    }
+
+    .feature-row:first-child {
+      border-top: 1px solid var(--surface3);
+    }
+
+    .feature-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      color: var(--surface3);
+      width: 40px;
+      flex-shrink: 0;
+    }
+
+    .feature-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      flex: 1;
+    }
+
+    .feature-desc {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 300px;
+      line-height: 1.5;
+    }
+
+    /* ── Final ── */
+    .final {
+      padding: 200px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .final h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(56px, 10vw, 120px);
+      line-height: 0.9;
+      margin-bottom: 32px;
+    }
+
+    .final h2 .yellow { color: var(--yellow); }
+
+    .final p {
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 48px;
+    }
+
+    /* ── Footer ── */
     footer {
       border-top: 1px solid var(--surface3);
-      padding: 40px 0;
+      padding: 40px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .footer-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
+    }
+
+    .footer-copy {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
     }
 
     .footer-links a {
       color: var(--muted);
       text-decoration: none;
-      font-size: 13px;
-      margin-left: 24px;
+      font-size: 12px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
       transition: color 0.2s;
     }
 
     .footer-links a:hover { color: var(--white); }
 
-    .footer-copy {
-      color: var(--muted);
-      font-size: 13px;
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .numbers { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+      .feature-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .feature-desc { max-width: 100%; }
+      .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+      .hero-scroll { display: none; }
     }
 
-    @media (max-width: 640px) {
-      .hero { padding: 80px 0 60px; }
-      .stats-grid { grid-template-columns: 1fr; gap: 16px; }
-      .footer-inner { flex-direction: column; text-align: center; }
-      .footer-links a { margin: 0 12px; }
-      .nav-links { display: none; }
+    @media (max-width: 480px) {
+      .numbers { grid-template-columns: 1fr; }
+      .number-value { font-size: 48px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <nav>
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
       <a href="/" class="logo">REP.</a>
-      <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="/terms.html">Terms</a>
-        <a href="/privacy.html">Privacy</a>
-      </div>
-    </nav>
-  </div>
+      <a href="#" class="nav-cta">Get the app</a>
+    </div>
+  </nav>
 
   <!-- Hero -->
   <section class="hero">
-    <div class="container">
-      <div class="hero-badge">Now available on iOS</div>
-      <h1>NOBODY GETS<br>STRONG <span>ALONE.</span></h1>
-      <p>Rep is the fitness app built around accountability. Track your workouts, hit PRs, build your squad. No fluff. Just results.</p>
-      <div class="cta-row">
-        <a href="#" class="btn btn-primary">Download on iOS</a>
-        <a href="#" class="btn btn-secondary">Coming to Android</a>
-      </div>
-    </div>
+    <div class="hero-kicker">The accountability app for lifters</div>
+    <h1>NOBODY<br>GETS STRONG<br><span class="yellow">ALONE.</span></h1>
+    <p class="hero-sub">Your gym crew in your pocket. Track every set, celebrate every PR, hold each other accountable. No noise. Just results.</p>
+    <a href="#" class="hero-cta">Download Rep.</a>
+    <div class="hero-scroll">Scroll</div>
   </section>
+
+  <!-- Statement 1 -->
+  <div class="divider"><div class="divider-line"></div></div>
+  <div class="statement">
+    <div class="statement-label">The problem</div>
+    <h2>YOU KNOW WHAT TO DO.<br>YOU JUST DON'T <span class="violet">DO IT.</span></h2>
+    <p>Nobody fails in the gym because they don't know the exercises. They fail because nobody's watching and nobody cares. Rep fixes that.</p>
+  </div>
+
+  <!-- Statement 2 -->
+  <div class="divider"><div class="divider-line"></div></div>
+  <div class="statement">
+    <div class="statement-label">The solution</div>
+    <h2>BUILD YOUR <span class="yellow">SQUAD.</span><br>BREAK YOUR <span class="green">RECORDS.</span></h2>
+    <p>Create a squad with your gym crew. Every workout you log, every PR you hit, every day you show up — they see it all. And when you don't show up, they'll know.</p>
+  </div>
+
+  <!-- Numbers -->
+  <div class="divider"><div class="divider-line"></div></div>
+  <div class="numbers">
+    <div class="number-item">
+      <div class="number-value">130+</div>
+      <div class="number-label">Exercises</div>
+    </div>
+    <div class="number-item">
+      <div class="number-value">&lt;5s</div>
+      <div class="number-label">To log a set</div>
+    </div>
+    <div class="number-item">
+      <div class="number-value">0</div>
+      <div class="number-label">Excuses</div>
+    </div>
+    <div class="number-item">
+      <div class="number-value">1</div>
+      <div class="number-label">App you need</div>
+    </div>
+  </div>
 
   <!-- Features -->
-  <section class="features" id="features">
-    <div class="container">
-      <div class="features-label">What makes Rep different</div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon" style="background: var(--violet-soft); color: var(--violet);">&#9889;</div>
-          <h3>FAST WORKOUT LOGGING</h3>
-          <p>Log sets, reps, and weight in seconds. Works offline. Your data is always there when you need it.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: var(--yellow-soft); color: var(--yellow);">&#8593;</div>
-          <h3>AUTOMATIC PR DETECTION</h3>
-          <p>We detect personal records automatically and celebrate every one. Your squad gets notified too.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: rgba(0,217,126,0.12); color: var(--success);">&#9996;</div>
-          <h3>SQUAD ACCOUNTABILITY</h3>
-          <p>Create a squad with your friends. See their workouts, streaks, and PRs. Nudge them when they slack.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: var(--violet-soft); color: var(--violet);">&#9733;</div>
-          <h3>AI PROGRAMS</h3>
-          <p>Answer 5 questions, get a personalised training program. Or build your own from 130+ exercises.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: var(--yellow-soft); color: var(--yellow);">&#128293;</div>
-          <h3>STREAKS THAT STICK</h3>
-          <p>Daily streak tracking keeps you honest. Miss a day and your squad will know. Stay consistent.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: rgba(0,217,126,0.12); color: var(--success);">&#128202;</div>
-          <h3>ADVANCED ANALYTICS</h3>
-          <p>Volume tracking, muscle breakdown, strength progression. See exactly where you're growing.</p>
-        </div>
-      </div>
+  <div class="divider"><div class="divider-line"></div></div>
+  <div class="features-strip">
+    <div class="feature-row">
+      <span class="feature-number">01</span>
+      <span class="feature-name">WORKOUT LOGGING</span>
+      <span class="feature-desc">Sets, reps, weight. Logged in seconds. Works offline. No friction.</span>
     </div>
-  </section>
+    <div class="feature-row">
+      <span class="feature-number">02</span>
+      <span class="feature-name">PR DETECTION</span>
+      <span class="feature-desc">We catch every personal record automatically. You just lift.</span>
+    </div>
+    <div class="feature-row">
+      <span class="feature-number">03</span>
+      <span class="feature-name">SQUAD FEED</span>
+      <span class="feature-desc">Real-time activity from your crew. Check-ins, PRs, streaks. All of it.</span>
+    </div>
+    <div class="feature-row">
+      <span class="feature-number">04</span>
+      <span class="feature-name">STREAKS</span>
+      <span class="feature-desc">Miss a day. Your squad knows. Stay consistent or get nudged.</span>
+    </div>
+    <div class="feature-row">
+      <span class="feature-number">05</span>
+      <span class="feature-name">AI PROGRAMS</span>
+      <span class="feature-desc">5 questions. 1 personalised program. Or build your own from scratch.</span>
+    </div>
+    <div class="feature-row">
+      <span class="feature-number">06</span>
+      <span class="feature-name">SMART SUGGESTIONS</span>
+      <span class="feature-desc">Progressive overload built in. We tell you what weight to hit next.</span>
+    </div>
+  </div>
 
-  <!-- Stats -->
-  <section class="stats">
-    <div class="container">
-      <div class="stats-grid">
-        <div>
-          <div class="stat-number">130+</div>
-          <div class="stat-label">Exercises</div>
-        </div>
-        <div>
-          <div class="stat-number">5</div>
-          <div class="stat-label">AI Questions</div>
-        </div>
-        <div>
-          <div class="stat-number">0</div>
-          <div class="stat-label">Excuses</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Social -->
-  <section class="social">
-    <div class="container">
-      <h2>YOUR <span>SQUAD</span> IS WAITING</h2>
-      <p>Rep isn't a solo app. It's built for friend groups who train together and hold each other accountable. Create a squad, share your progress, celebrate wins together.</p>
-    </div>
-  </section>
+  <!-- Statement 3 -->
+  <div class="divider"><div class="divider-line"></div></div>
+  <div class="statement">
+    <div class="statement-label">The feeling</div>
+    <h2>THE APP YOU FEEL<br><span class="yellow">WEIRD</span> WITHOUT.</h2>
+    <p>Like your water bottle. Like your headphones. Rep is the thing you don't walk into the gym without opening first.</p>
+  </div>
 
   <!-- Final CTA -->
-  <section class="final-cta">
-    <div class="container">
-      <h2>STOP TRAINING <span>ALONE.</span></h2>
-      <p>Download Rep and start your streak today.</p>
-      <div class="cta-row">
-        <a href="#" class="btn btn-primary">Download on iOS</a>
-      </div>
-    </div>
-  </section>
+  <div class="divider"><div class="divider-line"></div></div>
+  <div class="final">
+    <h2>STOP MAKING<br><span class="yellow">EXCUSES.</span></h2>
+    <p>Download Rep. Start your streak. Build your squad.</p>
+    <a href="#" class="hero-cta">Get Rep. Free</a>
+  </div>
 
   <!-- Footer -->
   <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <span class="footer-copy">&copy; 2026 Rep. All rights reserved.</span>
-        <div class="footer-links">
-          <a href="/terms.html">Terms of Service</a>
-          <a href="/privacy.html">Privacy Policy</a>
-        </div>
+    <div class="footer-inner">
+      <span class="footer-copy">&copy; 2026 Rep.</span>
+      <div class="footer-links">
+        <a href="/terms.html">Terms</a>
+        <a href="/privacy.html">Privacy</a>
       </div>
     </div>
   </footer>
