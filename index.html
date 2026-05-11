@@ -3,21 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>REP. — Nobody Gets Strong Alone</title>
-  <meta name="description" content="The fitness app built around accountability. Track workouts, hit PRs, build your squad.">
+  <title>R3P5 — Hands-free gym timer</title>
+  <meta name="description" content="Tabata, HIIT, AMRAP, EMOM, Boxing. Voice cues, volume-button controls, big display, Live Activity. Built for circuits, Hyrox, CrossFit, and boxing rounds.">
+  <meta property="og:title" content="R3P5 — Hands-free gym timer">
+  <meta property="og:description" content="Tabata. HIIT. AMRAP. EMOM. Boxing. Voice cues. Big display. Live Activity. Phone stays out of your hands.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="icon" type="image/svg+xml" href="assets/r3p5-icon.svg">
+  <link rel="apple-touch-icon" href="assets/r3p5-icon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@700&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --black: #07060A;
-      --surface2: #161420;
-      --surface3: #201E2A;
-      --violet: #7B2FFF;
-      --yellow: #D4FF1E;
+      --black: #0A0A0A;
+      --surface2: #141418;
+      --surface3: #1F1F25;
+      --lime: #AFF206;
+      --pink: #FE02A6;
+      --cyan: #09D1FE;
       --white: #EEECF4;
       --muted: #6B6780;
-      --success: #00D97E;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,10 +37,7 @@
       overflow-x: hidden;
     }
 
-    ::selection {
-      background: var(--violet);
-      color: var(--white);
-    }
+    ::selection { background: var(--lime); color: var(--black); }
 
     /* ── Nav ── */
     nav {
@@ -46,7 +49,7 @@
       padding: 20px 0;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      background: rgba(7,6,10,0.7);
+      background: rgba(10,10,10,0.7);
     }
 
     .nav-inner {
@@ -59,11 +62,14 @@
     }
 
     .logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 28px;
-      color: var(--white);
+      display: inline-flex;
+      align-items: center;
       text-decoration: none;
-      letter-spacing: 2px;
+    }
+    .logo img {
+      height: 72px;
+      width: auto;
+      display: block;
     }
 
     .nav-cta {
@@ -73,21 +79,16 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--black);
-      background: var(--yellow);
+      background: var(--lime);
       padding: 10px 24px;
       border-radius: 100px;
       text-decoration: none;
       transition: transform 0.2s;
     }
-
     .nav-cta:hover { transform: scale(1.05); }
 
     /* ── Sections ── */
-    section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
+    section { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
 
     /* ── Hero ── */
     .hero {
@@ -96,7 +97,53 @@
       flex-direction: column;
       justify-content: center;
       padding-top: 80px;
+      position: relative;
+      overflow: hidden;
     }
+
+    /* ── ECG hero backdrop ── */
+    .ecg-backdrop {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 280px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.18;
+      mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+    }
+    .ecg-backdrop svg {
+      display: block;
+      height: 100%;
+      width: 200%;
+      animation: ecg-scroll 14s linear infinite;
+    }
+    @keyframes ecg-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .hero > *:not(.ecg-backdrop):not(.hero-scroll) { position: relative; z-index: 1; }
+
+    /* ── ECG divider ── */
+    .ecg-divider {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .ecg-divider svg {
+      display: block;
+      width: 100%;
+      height: 36px;
+      opacity: 0.5;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ecg-backdrop svg { animation: none; }
+    }
+
 
     .hero-kicker {
       font-family: 'Barlow Condensed', sans-serif;
@@ -104,7 +151,7 @@
       font-size: 13px;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--violet);
+      color: var(--cyan);
       margin-bottom: 24px;
     }
 
@@ -113,16 +160,15 @@
       font-size: clamp(72px, 12vw, 140px);
       line-height: 0.9;
       margin-bottom: 40px;
-      max-width: 900px;
+      max-width: 1000px;
     }
-
-    .hero h1 .yellow { color: var(--yellow); }
-    .hero h1 .violet { color: var(--violet); }
+    .hero h1 .lime { color: var(--lime); }
+    .hero h1 .pink { color: var(--pink); }
 
     .hero-sub {
       font-size: 18px;
       color: var(--muted);
-      max-width: 420px;
+      max-width: 460px;
       line-height: 1.7;
       margin-bottom: 48px;
     }
@@ -137,16 +183,15 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--black);
-      background: var(--yellow);
+      background: var(--lime);
       padding: 16px 40px;
       border-radius: 100px;
       text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-
     .hero-cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 40px rgba(212,255,30,0.2);
+      box-shadow: 0 8px 40px rgba(175,242,6,0.25);
     }
 
     .hero-scroll {
@@ -162,7 +207,6 @@
       font-weight: 700;
       animation: pulse 2s ease-in-out infinite;
     }
-
     @keyframes pulse {
       0%, 100% { opacity: 0.3; }
       50% { opacity: 1; }
@@ -170,7 +214,7 @@
 
     /* ── Statement sections ── */
     .statement {
-      padding: 160px 32px;
+      padding: 96px 32px;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -189,36 +233,75 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(48px, 8vw, 80px);
       line-height: 0.95;
-      max-width: 800px;
+      max-width: 900px;
     }
-
-    .statement h2 .yellow { color: var(--yellow); }
-    .statement h2 .violet { color: var(--violet); }
-    .statement h2 .green { color: var(--success); }
+    .statement h2 .lime { color: var(--lime); }
+    .statement h2 .pink { color: var(--pink); }
+    .statement h2 .cyan { color: var(--cyan); }
 
     .statement p {
       color: var(--muted);
       font-size: 17px;
       line-height: 1.7;
-      max-width: 480px;
+      max-width: 520px;
       margin-top: 24px;
     }
 
     /* ── Divider ── */
-    .divider {
+    .divider { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+    .divider-line { height: 1px; background: var(--surface3); }
+
+    /* ── Modes grid ── */
+    .modes {
+      padding: 72px 32px;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 32px;
     }
 
-    .divider-line {
-      height: 1px;
-      background: var(--surface3);
+    .modes-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .modes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .mode-card {
+      border: 1px solid var(--surface3);
+      padding: 32px 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .mode-card:hover {
+      border-color: var(--lime);
+      transform: translateY(-2px);
+    }
+
+    .mode-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 40px;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+
+    .mode-desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-top: 8px;
     }
 
     /* ── Numbers ── */
     .numbers {
-      padding: 120px 32px;
+      padding: 72px 32px;
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
@@ -226,16 +309,17 @@
       gap: 32px;
     }
 
-    .number-item {
-      text-align: center;
-    }
+    .number-item { text-align: center; }
 
     .number-value {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 64px;
-      color: var(--yellow);
+      color: var(--lime);
       line-height: 1;
     }
+
+    .number-value.pink { color: var(--pink); }
+    .number-value.cyan { color: var(--cyan); }
 
     .number-label {
       font-family: 'Barlow Condensed', sans-serif;
@@ -248,11 +332,7 @@
     }
 
     /* ── Features strip ── */
-    .features-strip {
-      padding: 0 32px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .features-strip { padding: 0 32px; max-width: 1200px; margin: 0 auto; }
 
     .feature-row {
       display: flex;
@@ -261,10 +341,7 @@
       border-bottom: 1px solid var(--surface3);
       gap: 32px;
     }
-
-    .feature-row:first-child {
-      border-top: 1px solid var(--surface3);
-    }
+    .feature-row:first-child { border-top: 1px solid var(--surface3); }
 
     .feature-number {
       font-family: 'Bebas Neue', sans-serif;
@@ -283,13 +360,13 @@
     .feature-desc {
       color: var(--muted);
       font-size: 14px;
-      max-width: 300px;
+      max-width: 360px;
       line-height: 1.5;
     }
 
     /* ── Final ── */
     .final {
-      padding: 200px 32px;
+      padding: 120px 32px;
       max-width: 1200px;
       margin: 0 auto;
       text-align: center;
@@ -301,8 +378,8 @@
       line-height: 0.9;
       margin-bottom: 32px;
     }
-
-    .final h2 .yellow { color: var(--yellow); }
+    .final h2 .lime { color: var(--lime); }
+    .final h2 .pink { color: var(--pink); }
 
     .final p {
       color: var(--muted);
@@ -324,15 +401,9 @@
       align-items: center;
     }
 
-    .footer-copy {
-      color: var(--muted);
-      font-size: 12px;
-    }
+    .footer-copy { color: var(--muted); font-size: 12px; }
 
-    .footer-links {
-      display: flex;
-      gap: 24px;
-    }
+    .footer-links { display: flex; gap: 24px; }
 
     .footer-links a {
       color: var(--muted);
@@ -344,11 +415,11 @@
       text-transform: uppercase;
       transition: color 0.2s;
     }
-
     .footer-links a:hover { color: var(--white); }
 
     /* ── Responsive ── */
     @media (max-width: 768px) {
+      .modes-grid { grid-template-columns: repeat(2, 1fr); }
       .numbers { grid-template-columns: repeat(2, 1fr); gap: 40px; }
       .feature-row { flex-direction: column; align-items: flex-start; gap: 8px; }
       .feature-desc { max-width: 100%; }
@@ -357,6 +428,7 @@
     }
 
     @media (max-width: 480px) {
+      .modes-grid { grid-template-columns: 1fr; }
       .numbers { grid-template-columns: 1fr; }
       .number-value { font-size: 48px; }
     }
@@ -367,112 +439,189 @@
   <!-- Nav -->
   <nav>
     <div class="nav-inner">
-      <a href="/" class="logo">REP.</a>
+      <a href="/" class="logo" aria-label="R3P5 home"><img src="assets/r3p5-logo.svg" alt="R3P5"></a>
       <a href="#" class="nav-cta">Get the app</a>
     </div>
   </nav>
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-kicker">The accountability app for lifters</div>
-    <h1>NOBODY<br>GETS STRONG<br><span class="yellow">ALONE.</span></h1>
-    <p class="hero-sub">Your gym crew in your pocket. Track every set, celebrate every PR, hold each other accountable. No noise. Just results.</p>
-    <a href="#" class="hero-cta">Download Rep.</a>
+    <div class="ecg-backdrop" aria-hidden="true">
+      <svg viewBox="0 0 1600 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <defs>
+          <path id="beat" d="M0,100 L50,100 L55,92 L65,100 L95,100 L100,110 L105,40 L110,160 L115,95 L145,100 L155,88 L165,100 L200,100" />
+        </defs>
+        <g fill="none" stroke="#09D1FE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <use href="#beat" x="0"/>
+          <use href="#beat" x="200"/>
+          <use href="#beat" x="400"/>
+          <use href="#beat" x="600"/>
+          <use href="#beat" x="800"/>
+          <use href="#beat" x="1000"/>
+          <use href="#beat" x="1200"/>
+          <use href="#beat" x="1400"/>
+        </g>
+      </svg>
+    </div>
+    <div class="hero-kicker">Circuits · Hyrox · CrossFit · Boxing</div>
+    <h1>HANDS ON THE WORK.<br>NOT ON THE <span class="lime">PHONE.</span></h1>
+    <p class="hero-sub">Tabata. HIIT. AMRAP. EMOM. Boxing. Voice cues call every phase. Volume buttons skip them. You never break to look at a screen.</p>
+    <a href="#" class="hero-cta">Download R3P5</a>
     <div class="hero-scroll">Scroll</div>
   </section>
 
-  <!-- Statement 1 -->
-  <div class="divider"><div class="divider-line"></div></div>
+  <!-- Statement 1: the problem -->
+  <div class="ecg-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 36" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <g fill="none" stroke="#09D1FE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M0,18 L540,18 L548,14 L556,18 L580,18 L585,22 L590,4 L595,32 L600,16 L620,18 L644,18 L652,12 L660,18 L1200,18" />
+      </g>
+    </svg>
+  </div>
   <div class="statement">
     <div class="statement-label">The problem</div>
-    <h2>YOU KNOW WHAT TO DO.<br>YOU JUST DON'T <span class="violet">DO IT.</span></h2>
-    <p>Nobody fails in the gym because they don't know the exercises. They fail because nobody's watching and nobody cares. Rep fixes that.</p>
+    <h2>EVERY OTHER TIMER<br>NEEDS YOU TO <span class="pink">FIDDLE.</span></h2>
+    <p>Small buttons. Tiny numbers. Tap-to-pause when your hands are wrapped, gloved, sweaty, or holding something heavy. R3P5 was built for the gym floor, not the App Store screenshot.</p>
   </div>
 
-  <!-- Statement 2 -->
-  <div class="divider"><div class="divider-line"></div></div>
+  <!-- Modes -->
+  <div class="ecg-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 36" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <g fill="none" stroke="#09D1FE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M0,18 L540,18 L548,14 L556,18 L580,18 L585,22 L590,4 L595,32 L600,16 L620,18 L644,18 L652,12 L660,18 L1200,18" />
+      </g>
+    </svg>
+  </div>
+  <div class="modes">
+    <div class="modes-label">Six modes</div>
+    <div class="modes-grid">
+      <div class="mode-card">
+        <div class="mode-name">TABATA</div>
+        <div class="mode-desc">20 on, 10 off, 8 rounds. The classic.</div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-name">HIIT</div>
+        <div class="mode-desc">Custom work and rest intervals. Any structure.</div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-name">AMRAP</div>
+        <div class="mode-desc">As many rounds as possible. Single countdown.</div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-name">EMOM</div>
+        <div class="mode-desc">Every minute on the minute. Bell on the top.</div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-name">BOXING</div>
+        <div class="mode-desc">3-minute rounds, 1-minute rest. Bell-accurate.</div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-name">CUSTOM</div>
+        <div class="mode-desc">Build your own intervals. Save as a preset.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statement 2: the solution -->
+  <div class="ecg-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 36" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <g fill="none" stroke="#09D1FE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M0,18 L540,18 L548,14 L556,18 L580,18 L585,22 L590,4 L595,32 L600,16 L620,18 L644,18 L652,12 L660,18 L1200,18" />
+      </g>
+    </svg>
+  </div>
   <div class="statement">
     <div class="statement-label">The solution</div>
-    <h2>BUILD YOUR <span class="yellow">SQUAD.</span><br>BREAK YOUR <span class="green">RECORDS.</span></h2>
-    <p>Create a squad with your gym crew. Every workout you log, every PR you hit, every day you show up — they see it all. And when you don't show up, they'll know.</p>
+    <h2>VOICE CUES.<br>VOLUME BUTTONS.<br><span class="cyan">BIG DISPLAY.</span></h2>
+    <p>Your phase changes get called out in your earbuds. Vol+ pauses. Vol− skips. The countdown fills the whole screen so you can read it from across the floor. The phone stays put. You stay in the round.</p>
   </div>
 
   <!-- Numbers -->
-  <div class="divider"><div class="divider-line"></div></div>
+  <div class="ecg-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 36" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <g fill="none" stroke="#09D1FE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M0,18 L540,18 L548,14 L556,18 L580,18 L585,22 L590,4 L595,32 L600,16 L620,18 L644,18 L652,12 L660,18 L1200,18" />
+      </g>
+    </svg>
+  </div>
   <div class="numbers">
     <div class="number-item">
-      <div class="number-value">130+</div>
-      <div class="number-label">Exercises</div>
+      <div class="number-value">6</div>
+      <div class="number-label">Timer modes</div>
     </div>
     <div class="number-item">
-      <div class="number-value">&lt;5s</div>
-      <div class="number-label">To log a set</div>
+      <div class="number-value pink">0</div>
+      <div class="number-label">Hands required</div>
     </div>
     <div class="number-item">
-      <div class="number-value">0</div>
-      <div class="number-label">Excuses</div>
+      <div class="number-value cyan">∞</div>
+      <div class="number-label">Custom presets</div>
     </div>
     <div class="number-item">
       <div class="number-value">1</div>
-      <div class="number-label">App you need</div>
+      <div class="number-label">Tap to start</div>
     </div>
   </div>
 
   <!-- Features -->
-  <div class="divider"><div class="divider-line"></div></div>
+  <div class="ecg-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 36" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <g fill="none" stroke="#09D1FE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M0,18 L540,18 L548,14 L556,18 L580,18 L585,22 L590,4 L595,32 L600,16 L620,18 L644,18 L652,12 L660,18 L1200,18" />
+      </g>
+    </svg>
+  </div>
   <div class="features-strip">
     <div class="feature-row">
       <span class="feature-number">01</span>
-      <span class="feature-name">WORKOUT LOGGING</span>
-      <span class="feature-desc">Sets, reps, weight. Logged in seconds. Works offline. No friction.</span>
+      <span class="feature-name">VOICE CUES</span>
+      <span class="feature-desc">Spoken phase callouts in your earbuds. Spotify ducks underneath them.</span>
     </div>
     <div class="feature-row">
       <span class="feature-number">02</span>
-      <span class="feature-name">PR DETECTION</span>
-      <span class="feature-desc">We catch every personal record automatically. You just lift.</span>
+      <span class="feature-name">VOLUME CONTROLS</span>
+      <span class="feature-desc">Vol+ play/pause. Vol− skip phase. Native HUD suppressed.</span>
     </div>
     <div class="feature-row">
       <span class="feature-number">03</span>
-      <span class="feature-name">SQUAD FEED</span>
-      <span class="feature-desc">Real-time activity from your crew. Check-ins, PRs, streaks. All of it.</span>
+      <span class="feature-name">BIG DISPLAY</span>
+      <span class="feature-desc">Full-screen countdown. Tap anywhere to pause. Readable across the gym.</span>
     </div>
     <div class="feature-row">
       <span class="feature-number">04</span>
-      <span class="feature-name">STREAKS</span>
-      <span class="feature-desc">Miss a day. Your squad knows. Stay consistent or get nudged.</span>
+      <span class="feature-name">LIVE ACTIVITY</span>
+      <span class="feature-desc">Lock screen + Dynamic Island. The timer never disappears.</span>
     </div>
     <div class="feature-row">
       <span class="feature-number">05</span>
-      <span class="feature-name">AI PROGRAMS</span>
-      <span class="feature-desc">5 questions. 1 personalised program. Or build your own from scratch.</span>
+      <span class="feature-name">PRESETS</span>
+      <span class="feature-desc">Save your protocols. Recall them in a tap. Stored on your device.</span>
     </div>
     <div class="feature-row">
       <span class="feature-number">06</span>
-      <span class="feature-name">SMART SUGGESTIONS</span>
-      <span class="feature-desc">Progressive overload built in. We tell you what weight to hit next.</span>
+      <span class="feature-name">HAPTICS</span>
+      <span class="feature-desc">A pulse on every phase change. Feel the switch even with the music up.</span>
     </div>
   </div>
 
-  <!-- Statement 3 -->
-  <div class="divider"><div class="divider-line"></div></div>
-  <div class="statement">
-    <div class="statement-label">The feeling</div>
-    <h2>THE APP YOU FEEL<br><span class="yellow">WEIRD</span> WITHOUT.</h2>
-    <p>Like your water bottle. Like your headphones. Rep is the thing you don't walk into the gym without opening first.</p>
-  </div>
-
   <!-- Final CTA -->
-  <div class="divider"><div class="divider-line"></div></div>
+  <div class="ecg-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 36" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <g fill="none" stroke="#09D1FE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M0,18 L540,18 L548,14 L556,18 L580,18 L585,22 L590,4 L595,32 L600,16 L620,18 L644,18 L652,12 L660,18 L1200,18" />
+      </g>
+    </svg>
+  </div>
   <div class="final">
-    <h2>STOP MAKING<br><span class="yellow">EXCUSES.</span></h2>
-    <p>Download Rep. Start your streak. Build your squad.</p>
-    <a href="#" class="hero-cta">Get Rep. Free</a>
+    <h2>SET THE TIMER.<br><span class="pink">GO.</span></h2>
+    <p>No accounts. No notifications. Free, offline, iPhone &amp; Android.</p>
+    <a href="#" class="hero-cta">Get R3P5</a>
   </div>
 
   <!-- Footer -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-copy">&copy; 2026 Rep.</span>
+      <span class="footer-copy">&copy; 2026 R3P5</span>
       <div class="footer-links">
         <a href="/terms.html">Terms</a>
         <a href="/privacy.html">Privacy</a>

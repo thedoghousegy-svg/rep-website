@@ -3,96 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — REP.</title>
+  <title>Privacy Policy — R3P5</title>
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="icon" type="image/svg+xml" href="assets/r3p5-icon.svg">
+  <link rel="apple-touch-icon" href="assets/r3p5-icon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #07060A; color: #EEECF4; font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    body { background: #0A0A0A; color: #EEECF4; font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
     .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
     nav { padding: 24px 0; }
-    nav a { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: #EEECF4; text-decoration: none; }
+    nav a { display: inline-block; text-decoration: none; }
+    nav a img { height: 80px; width: auto; display: block; }
     h1 { font-family: 'Bebas Neue', sans-serif; font-size: 48px; margin: 60px 0 16px; }
     .updated { color: #6B6780; font-size: 13px; margin-bottom: 40px; }
     h2 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; margin: 40px 0 12px; color: #EEECF4; }
     p, li { color: #6B6780; font-size: 15px; line-height: 1.7; margin-bottom: 12px; }
     ul { padding-left: 20px; margin-bottom: 16px; }
-    footer { border-top: 1px solid #201E2A; padding: 40px 0; margin-top: 80px; }
+    footer { border-top: 1px solid #1F1F25; padding: 40px 0; margin-top: 80px; }
     footer p { color: #6B6780; font-size: 13px; text-align: center; }
-    a { color: #7B2FFF; }
+    a { color: #AFF206; }
+    .callout {
+      border: 1px solid #AFF206;
+      padding: 20px 24px;
+      margin: 24px 0 32px;
+      color: #EEECF4;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 1px;
+      line-height: 1.2;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <nav><a href="/">REP.</a></nav>
+    <nav><a href="/" aria-label="R3P5 home"><img src="assets/r3p5-logo.svg" alt="R3P5"></a></nav>
 
     <h1>PRIVACY POLICY</h1>
-    <p class="updated">Last updated: 28 March 2026</p>
+    <p class="updated">Last updated: 11 May 2026</p>
+
+    <div class="callout">R3P5 IS A LOCAL APP. WE DO NOT COLLECT YOUR DATA, BECAUSE WE NEVER SEE IT.</div>
 
     <h2>1. INTRODUCTION</h2>
-    <p>Rep ("we", "our", "us") respects your privacy. This Privacy Policy explains how we collect, use, and protect your personal data when you use the Rep mobile application ("App").</p>
+    <p>R3P5 ("we", "our", "us") is a gym interval-timer app published by The Doghouse. This Privacy Policy explains how the App handles your data.</p>
 
     <h2>2. DATA WE COLLECT</h2>
-    <p>We collect the following data:</p>
+    <p>We do not collect any personal data. R3P5 does not require an account, does not have a backend server, and does not transmit your activity to us.</p>
+
+    <h2>3. DATA STORED ON YOUR DEVICE</h2>
+    <p>The App stores the following on your device only:</p>
     <ul>
-      <li><strong>Account data:</strong> Email address, display name, username</li>
-      <li><strong>Workout data:</strong> Exercise logs, sets, reps, weight, personal records, workout timestamps</li>
-      <li><strong>Social data:</strong> Squad memberships, feed posts, messages, reactions</li>
-      <li><strong>Device data:</strong> Push notification tokens, device platform (iOS/Android)</li>
-      <li><strong>Subscription data:</strong> Subscription status, plan type (processed by Stripe)</li>
+      <li><strong>Timer presets:</strong> The interval configurations you save</li>
+      <li><strong>App settings:</strong> Voice cue preferences, volume-button control toggle, and similar preferences</li>
     </ul>
+    <p>This data never leaves your device. Uninstalling the App removes it.</p>
 
-    <h2>3. HOW WE USE YOUR DATA</h2>
-    <p>We use your data to:</p>
-    <ul>
-      <li>Provide and improve the App's core features (workout tracking, PR detection, streaks)</li>
-      <li>Enable squad features (feed, messaging, leaderboards)</li>
-      <li>Send push notifications (workout reminders, squad activity, PR alerts)</li>
-      <li>Process payments via Stripe</li>
-      <li>Generate AI training programmes</li>
-    </ul>
+    <h2>4. AUDIO &amp; MICROPHONE</h2>
+    <p>R3P5 plays audio (phase cues, optional spoken callouts via the operating system's text-to-speech engine) and may temporarily duck other audio while the timer is running. The App does not access your microphone.</p>
 
-    <h2>4. DATA STORAGE</h2>
-    <p>Your data is stored securely using Supabase (hosted on AWS). Workout data is also cached locally on your device using an encrypted SQLite database for offline access.</p>
+    <h2>5. NOTIFICATIONS &amp; LIVE ACTIVITY</h2>
+    <p>If you grant permission, R3P5 may display Live Activity / Dynamic Island content (iOS 16.2+) so the timer remains visible on the lock screen. All notification content is generated locally on your device.</p>
 
-    <h2>5. DATA SHARING</h2>
-    <p>We do not sell your personal data. We share data only with:</p>
-    <ul>
-      <li><strong>Supabase:</strong> Database and authentication hosting</li>
-      <li><strong>Stripe:</strong> Payment processing (subscription data only)</li>
-      <li><strong>Firebase (Google):</strong> Push notification delivery</li>
-      <li><strong>Squad members:</strong> Your workout activity, streaks, and PRs are visible to members of squads you join</li>
-    </ul>
+    <h2>6. THIRD-PARTY SERVICES</h2>
+    <p>R3P5 does not integrate with analytics services, advertising networks, or third-party trackers. The App does use Apple and Google operating-system services (text-to-speech, haptics, notifications, Live Activity) provided by your device's platform.</p>
 
-    <h2>6. YOUR RIGHTS</h2>
-    <p>Under UK GDPR, you have the right to:</p>
-    <ul>
-      <li>Access your personal data</li>
-      <li>Correct inaccurate data</li>
-      <li>Delete your account and associated data</li>
-      <li>Export your data</li>
-      <li>Withdraw consent for push notifications at any time</li>
-    </ul>
-    <p>To exercise these rights, contact us at <a href="mailto:hello@rep-app.co.uk">hello@rep-app.co.uk</a>.</p>
+    <h2>7. APP STORES</h2>
+    <p>When you download R3P5, Apple's App Store or Google Play Store may collect data about your download and any optional anonymous usage metrics in accordance with their own privacy policies. We do not receive personally identifiable data from these sources.</p>
 
-    <h2>7. DATA RETENTION</h2>
-    <p>We retain your data for as long as your account is active. If you delete your account, we will delete your personal data within 30 days. Anonymised, aggregated data may be retained for analytics purposes.</p>
+    <h2>8. CHILDREN</h2>
+    <p>R3P5 contains no user accounts, social features, advertising, or in-app purchases, and is rated suitable for general audiences. We do not knowingly collect personal data from anyone, including children.</p>
 
-    <h2>8. COOKIES</h2>
-    <p>The App does not use cookies. The website (rep-app.co.uk) uses only essential cookies required for functionality.</p>
+    <h2>9. YOUR RIGHTS</h2>
+    <p>Because we do not collect or hold any personal data, there is nothing for us to access, correct, export, or delete on your behalf. To remove all R3P5 data, uninstall the App.</p>
 
-    <h2>9. CHILDREN</h2>
-    <p>Rep is not intended for children under 16. We do not knowingly collect data from children under 16. If you believe a child has provided us with personal data, please contact us.</p>
+    <h2>10. CHANGES TO THIS POLICY</h2>
+    <p>If we ever introduce features that change how data is handled (for example optional cloud sync), this policy will be updated and the change communicated via the App or this page before the feature is enabled.</p>
 
-    <h2>10. SECURITY</h2>
-    <p>We implement industry-standard security measures including encryption in transit (TLS), row-level security on all database tables, and secure token storage on device.</p>
+    <h2>11. CONTACT</h2>
+    <p>For privacy-related questions, contact us at <a href="mailto:hello@rep-app.co.uk">hello@rep-app.co.uk</a>.</p>
 
-    <h2>11. CHANGES TO THIS POLICY</h2>
-    <p>We may update this Privacy Policy from time to time. We will notify users of significant changes via the App or email.</p>
-
-    <h2>12. CONTACT</h2>
-    <p>For privacy-related questions or data requests, contact us at <a href="mailto:hello@rep-app.co.uk">hello@rep-app.co.uk</a>.</p>
-
-    <footer><p>&copy; 2026 Rep. All rights reserved.</p></footer>
+    <footer><p>&copy; 2026 R3P5. All rights reserved.</p></footer>
   </div>
 </body>
 </html>
